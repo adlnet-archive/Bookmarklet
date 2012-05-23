@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Tin Can API Bookmarklet Sample</title>
+
+</head>
+<body>
+<h1>Tin Can API Bookmarklet Sample</h1>
+
+Drag this link onto your browser bookmark bar:<br />
+<a href="javascript:(function(){function PollForClose(){
+    
+	
+	
+	var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
+	var eventer = window[eventMethod];
+	var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message';
+
+	eventer(messageEvent,function(e) {
+	 
+			if(e.data='closeTinCanBookmarklet' && document.getElementById('TinCanIFrame') != null)
+			{
+			
+			document.getElementById('TinCanIFrame').parentElement.removeChild(document.getElementById('TinCanIFrame'));
+			}
+	},false);
+
+
+} 
+function CreateFrame(){iframe=document.createElement('iframe');iframe.width=100;iframe.height=100;iframe.style.position='fixed';iframe.style.border='none';iframe.id='TinCanIFrame';iframe.style.left='0%';iframe.style.top='0%';iframe.style.width='100%';iframe.style.height='100%'; iframe.onload=function(){window.setTimeout(PollForClose,200);}; iframe.src='http://3dr.adlnet.gov/dev/demos/bookmarklet/iframe.html#'+window.location.href; document.getElementsByTagName('body')[0].appendChild(iframe);}if(!document.getElementById('TinCanIFrame')){CreateFrame();}else{document.getElementById('TinCanIFrame').parentElement.removeChild(document.getElementById('TinCanIFrame'));CreateFrame();}})()">Tin Can API Bookmarklet</a>
+
+<br/>
+To Reset the data for testing, drag this link onto your browser bookmark bar:<br />
+<a href="javascript:(function(){function PollForClose(){
+   	
+	
+	var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
+	var eventer = window[eventMethod];
+	var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message';
+
+	eventer(messageEvent,function(e) {
+	 
+			if(e.data='closeTinCanBookmarklet' && document.getElementById('TinCanIFrame') != null)
+			{
+			
+			document.getElementById('TinCanIFrame').parentElement.removeChild(document.getElementById('TinCanIFrame'));
+			}
+	},false);
+} 
+function CreateFrame(){iframe=document.createElement('iframe');iframe.width=100;iframe.height=100;iframe.style.position='fixed';iframe.style.border='none';iframe.id='TinCanIFrame';iframe.style.left='0%';iframe.style.top='0%';iframe.style.width='100%';iframe.style.height='100%'; iframe.onload=function(){window.setTimeout(PollForClose,200);}; iframe.src='http://3dr.adlnet.gov/dev/demos/bookmarklet/iframe.html#reset';  document.getElementsByTagName('body')[0].appendChild(iframe);}if(!document.getElementById('TinCanIFrame')){CreateFrame();}else{document.getElementById('TinCanIFrame').parentElement.removeChild(document.getElementById('TinCanIFrame'));CreateFrame();}})()">Clear Bookmarklet Data</a>
+
+</body>
+</html>
